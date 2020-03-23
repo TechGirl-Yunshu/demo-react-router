@@ -5,6 +5,8 @@ import './App.css'
 
 import { Bio, Experience, Projects, Contact } from './Components'
 
+import jobHistory from './Data/jobHistory'
+
 function App() {
   return (
     <div className="App">
@@ -27,7 +29,18 @@ function App() {
       {/* (1) inspect implicit route props */}
       <Route exact path='/' component={Bio} />
       <Route path='/projects' component={Projects} />
-      <Route path='/experience' component={Experience} />
+      <Route
+        path='/experience'
+        render={(routeProps) => (
+          <Experience
+            // history={routeProps.history}
+            // location={routeProps.location}
+            // match={routeProps.match}
+            {...routeProps}
+            jobHistory={jobHistory}
+          />
+        )}
+      />
       <Route path='/contact' component={Contact} />
 
     </div>
